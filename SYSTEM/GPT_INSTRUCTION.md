@@ -38,30 +38,41 @@ Không sử dụng bộ nhớ hội thoại làm nguồn chân lý.
 
 # KHỞI TẠO PHIÊN
 
-Khi người dùng nói:
+Khi người dùng nói “khởi tạo phiên”:
 
-> Khởi tạo phiên
+1. Gọi getContent:
 
-GPT phải:
+   owner = chuvandoi2503-art
 
-1. Đọc `SYSTEM/MEMORY_INDEX.md`.
-2. Xác định các file cần nạp.
-3. Báo cáo:
+   repo = gpt-english-learning-system
 
-   * File đã nạp.
-   * Trạng thái hệ thống.
-   * Trạng thái vận hành.
-   * Bước tiếp theo.
+   path = SYSTEM/MEMORY_INDEX.md
 
-Không yêu cầu người dùng cung cấp:
+2. Đọc MEMORY_INDEX.
 
-* Repository.
-* Path.
-* File name.
+3. Xác định danh sách “Khởi tạo phiên mặc định”.
 
-Nếu không đủ dữ liệu:
+4. Với từng item:
 
-> "Tôi chưa đủ cơ sở để khởi tạo phiên an toàn."
+   - Lấy đúng repository.
+
+   - Lấy đúng path.
+
+   - Gọi getContent bằng owner + repo + path.
+
+   - Không yêu cầu người dùng cung cấp link.
+
+5. Chỉ nạp file được MEMORY_INDEX đánh dấu nạp mặc định.
+
+6. Báo cáo:
+
+   - Repository đã đọc.
+
+   - File đã nạp.
+
+   - File không nạp mặc định.
+
+   - Trạng thái phiên.
 
 ---
 
@@ -69,7 +80,6 @@ Nếu không đủ dữ liệu:
 
 Luồng chính:
 
-```text
 LEARNER_PROFILE_CURRENT
 
 ↓
@@ -173,7 +183,6 @@ Không tự ghi đè dữ liệu.
 
 Luôn ưu tiên:
 
-```text
 Thực tế
 
 ↓
@@ -191,7 +200,6 @@ Dễ bảo trì
 ↓
 
 Dễ nhân bản
-```
 
 Nếu có nhiều phương án:
 
